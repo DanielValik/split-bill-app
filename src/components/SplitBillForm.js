@@ -13,29 +13,35 @@ export function SplitBillForm({ selectedFriend, onSplitBill }) {
     whoPay === "you" ? onSplitBill(-friendExpence) : onSplitBill(yourExpence);
   }
 
+  //prettier-ignore
   return (
     selectedFriend && (
       <form className="form-split-bill" onSubmit={handleSplitingBill}>
         <h2>SPLIT THE BILL WITH {selectedFriend.name}</h2>
+
         <p>Bill value</p>{" "}
         <input
           type="text"
           value={bill}
           onChange={(e) => setBill(Number(e.target.value))}
         />
+
         <p>Your expence</p>{" "}
         <input
           type="text"
           value={yourExpence}
           onChange={(e) => setYourExpence(Number(e.target.value))}
         />
+
         <p>{selectedFriend.name} expence</p>{" "}
         <input type="text" disabled value={friendExpence} />
+
         <p>Who is paing the bill? </p>{" "}
         <select value={whoPay} onChange={(e) => setWhoPay(e.target.value)}>
           <option value="you">You</option>
           <option value="friend">{selectedFriend.name}</option>
         </select>
+
         <button type="submit" className="button">
           Split the bill
         </button>

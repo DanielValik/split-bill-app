@@ -5,6 +5,22 @@ export default function AddFriendForm({ onAddFriend }) {
   const [friendName, setFriendName] = useState("Test Name");
   const [imageUrl, setImageUrl] = useState("https://i.pravatar.cc/48?u=933373");
 
+  function handleAddFriend(e) {
+    e.preventDefault();
+
+    onAddFriend((friendsList) => [
+      ...friendsList,
+      {
+        id: Math.floor(Math.random() * 999999),
+        name: friendName,
+        image: imageUrl,
+        balance: 0,
+      },
+    ]);
+
+    setToggleAddForm(false);
+  }
+
   return toggleAddForm ? (
     <div>
       <form className="form-add-friend">
@@ -20,24 +36,7 @@ export default function AddFriendForm({ onAddFriend }) {
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
         />
-        <button
-          className="button"
-          onClick={(e) => {
-            e.preventDefault();
-
-            onAddFriend((friendsList) => [
-              ...friendsList,
-              {
-                id: Math.floor(Math.random() * 999999),
-                name: friendName,
-                image: imageUrl,
-                balance: 0,
-              },
-            ]);
-
-            setToggleAddForm(false);
-          }}
-        >
+        <button className="button" onClick={handleAddFriend}>
           Add
         </button>
       </form>

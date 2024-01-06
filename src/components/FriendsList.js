@@ -9,9 +9,9 @@ export function FriendsList({
         {friendsList.map((friend) => (
           <FriendItem
             friend={friend}
-            key={friend.id}
             selectedFriend={selectedFriend}
             onFriendSelected={setSelectedFriend}
+            key={friend.id}
           />
         ))}
       </ul>
